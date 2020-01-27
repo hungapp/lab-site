@@ -42,5 +42,6 @@ module.exports = {
         useACF: false,
       },
     },
+    `gatsby-plugin-styled-components`,
   ],
 }
