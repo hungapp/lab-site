@@ -2,13 +2,14 @@ import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import logo from "../images/logo.png"
 
 const HeaderContainer = styled.header`
   height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-
+  background-color: #0d0a23;
   @media screen and (max-width: 800px) {
     height: 60px;
     padding: 10px;
@@ -17,7 +18,7 @@ const HeaderContainer = styled.header`
 `
 
 const LogoContainer = styled(Link)`
-  padding: 5px;
+  padding: 10px 40px;
   // @media screen and (max-width: 800px) {
   //   width: 50px;
   //   padding: 0;
@@ -25,7 +26,7 @@ const LogoContainer = styled(Link)`
 `
 
 const OptionsContainer = styled.div`
-  width: 50%;
+  width: 70%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -37,7 +38,7 @@ const OptionsContainer = styled.div`
 `
 
 const OptionLink = styled(Link)`
-  padding: 5px 15px;
+  padding: 5px 40px 5px 0;
   cursor: pointer;
 `
 
@@ -63,7 +64,9 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <LogoContainer to="/">ABC</LogoContainer>
+      <LogoContainer to="/">
+        <img src={logo} alt="Logo" style={{ width: "300px", height: "auto" }} />
+      </LogoContainer>
       <OptionsContainer>
         {menuItems.map(item => (
           <OptionLink key={item.object_id} to={item.object_slug}>

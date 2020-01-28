@@ -16,10 +16,11 @@ const Layout = ({ children }) => (
   <>
     <Header />
     <main>{children}</main>
-    <footer>
-      © {new Date().getFullYear()}, Built with
-      {` `}
-      <a href="https://www.gatsbyjs.org">Gatsby</a>
+    <footer
+      style={{ backgroundColor: "#0d0a23", color: "white", padding: "5px" }}
+    >
+      <p>360 Huntington Ave., Boston, Massachusetts 02115 | 617.373.2000</p>
+      <p>© {new Date().getFullYear()} Northeastern University</p>
     </footer>
   </>
 )

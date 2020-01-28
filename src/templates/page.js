@@ -1,13 +1,8 @@
 import React, { Component } from "react"
 import Layout from "../components/layout"
 import { graphql } from "gatsby"
-import styled from "styled-components"
 
-const Container = styled.div`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 0 1.0875rem;
-`
+import Container from "../components/container"
 
 class Page extends Component {
   render() {
