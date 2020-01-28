@@ -32,13 +32,13 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Access query results via object destructuring
-  const { allWordpressPage } = result.data
+  const pages = result.data.allWordpressPage.edges
 
   const pageTemplate = path.resolve(`./src/templates/page.js`)
   // We want to create a detailed page for each
   // page node. We'll just use the WordPress Slug for the slug.
   // The Page ID is prefixed with 'PAGE_'
-  allWordpressPage.edges.forEach(edge => {
+  pages.forEach(edge => {
     // Gatsby uses Redux to manage its internal state.
     // Plugins and sites can use functions like "createPage"
     // to interact with Gatsby.

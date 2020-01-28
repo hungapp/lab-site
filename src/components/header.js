@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
@@ -8,7 +8,6 @@ const HeaderContainer = styled.header`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
 
   @media screen and (max-width: 800px) {
     height: 60px;
@@ -42,20 +41,39 @@ const OptionLink = styled(Link)`
   cursor: pointer;
 `
 
-const Header = ({ siteTitle, pageLinks }) => (
-  <HeaderContainer>
-    <LogoContainer to="/">
-      <h1 style={{ margin: 0, padding: 0 }}>{siteTitle} </h1>
-    </LogoContainer>
-    <OptionsContainer>
-      {pageLinks.map(({ node }) => (
-        <OptionLink key={node.id} to={node.slug}>
-          {node.title}
-        </OptionLink>
-      ))}
-    </OptionsContainer>
-  </HeaderContainer>
-)
+const Header = () => {
+  const data = useStaticQuery(graphql`
+    query MenuQuery {
+      allWordpressWpApiMenusMenusItems {
+        edges {
+          node {
+            name
+            id
+            items {
+              title
+              object_slug
+              object_id
+            }
+          }
+        }
+      }
+    }
+  `)
+  const menuItems = data.allWordpressWpApiMenusMenusItems.edges[0].node.items
+
+  return (
+    <HeaderContainer>
+      <LogoContainer to="/">ABC</LogoContainer>
+      <OptionsContainer>
+        {menuItems.map(item => (
+          <OptionLink key={item.object_id} to={item.object_slug}>
+            {item.title}
+          </OptionLink>
+        ))}
+      </OptionsContainer>
+    </HeaderContainer>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
